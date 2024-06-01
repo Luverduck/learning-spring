@@ -1,0 +1,13 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<p th:text="'hello ' + ${name}">hello! empty</p>
+</body>
+</html>
+
+<!--
+    [02-02] START
+    07. 템플릿 엔진에서 'hello-template.html'을 처리한 후 변환된 'hello-template.html'을 웹 브라우저에 전달한다.
+        <p th:text="'hello ' + ${name}">hello! empty</p>를 <p>hello! 이름</p>로 변환
+    08. 웹 브라우저에서 변환된 'hello-template.html'를 화면에 출력한다.
+    [02-02] END
+-->

@@ -3,6 +3,7 @@ package hello.hello_spring;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 // [01-03] @Controller 어노테이션
 @Controller
@@ -20,4 +21,18 @@ public class HelloController {
         return "hello";
     };
     // [01-03] END
+
+    // [02-02] START
+    // 01. 웹 브라우저에서 'http://localhost:8080/hello-mvc'로 요청을 보낸다.
+    // 02. '/hello-mvc'인 요청을 HelloController의 helloMVC 메소드로 연결한다.
+    //     key가 name인 파라미터의 값을 helloMVC 메소드의 매개변수 name에 전달한다.
+    // 03. helloMVC 메소드에서 Model에 key-value 형태의 속성 {"data" : "Hello!!!"}을 추가한다.
+    // 04. helloMVC 메소드 실행 후 View 이름인 "hello-template"를 반환한다.
+    // 05. ViewResolver는 templates 폴더 하위에서 이름이 "hello-template"인 템플릿을 찾는다.
+    @GetMapping("hello-mvc")
+    public String helloMVC(@RequestParam(value = "name", required = false) String name, Model model) {
+        model.addAttribute("name", name);
+        return "hello-template";
+    };
+    // [02-02] END
 }
