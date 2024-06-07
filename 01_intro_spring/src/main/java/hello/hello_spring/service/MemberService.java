@@ -2,7 +2,6 @@ package hello.hello_spring.service;
 
 import hello.hello_spring.domain.Member;
 import hello.hello_spring.repository.MemberRepository;
-import hello.hello_spring.repository.MemoryMemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,8 +15,7 @@ public class MemberService {
     // 회원 레퍼지토리 생성
     // private final MemberRepository memberRepository = new MemoryMemberRepository();
 
-    // [04-01] START
-    // MemberService와 MemberRepository 사이의 의존 관계 주입
+    // [04-02] START
     // 회원 레퍼지토리의 선언
     private final MemberRepository memberRepository;
 
@@ -27,10 +25,11 @@ public class MemberService {
         this.memberRepository = memberRepository;
     }
     // MemberService와 MemberRepository 사이의 의존관계 생성
-    // 1. MemberService형 객체를 생성하기 위해서는 생성자를 호출해야 한다.
+    // 1. SpringConfig 클래스에 @Bean 어노테이션이 붙은 생성자를 실행하여 반환하는 객체를 빈으로 등록한다.
     // 2. 스프링 컨테이너에서 전달받은 MemberRepository형 객체를 인수로 생성자를 호출한다.
     // 3. MemberService(this)형 객체의 멤버인 memberRepository에 스프링 컨테이너에서 전달받은 MemberRepository형 객체를 대입한다.
-    // [04-01] END
+    // ** 참고 ** 스프링 4.3에서부터 생성자가 하나밖에 없는 스프링 빈에 의존관계를 주입할 때 @Autowired 어노테이션을 생략할 수 있다.
+    // [04-02] END
 
     /**
      * 회원 가입
