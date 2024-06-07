@@ -11,6 +11,7 @@ import static org.assertj.core.api.Assertions.*;
 // [03-03] START
 public class MemberRepositoryTest {
 
+    // 회원 레퍼지토리 객체 생성
     MemberRepository repository = new MemoryMemberRepository();
 
     // 매번 테스트가 끝날 때마다 실행

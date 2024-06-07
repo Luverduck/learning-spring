@@ -1,6 +1,7 @@
 package hello.hello_spring.service;
 
 import hello.hello_spring.domain.Member;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
@@ -9,7 +10,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 // [03-05] START
 class MemberServiceTest {
 
-    MemberService memberService = new MemberService();
+    // 회원 서비스 객체 생성
+    MemberService memberService;
 
     // 회원 가입 기능 테스트
     @Test
