@@ -4,8 +4,11 @@ import hello.hello_spring.domain.Member;
 import hello.hello_spring.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
 
 // [04-01] START
 @Controller
@@ -51,5 +54,22 @@ public class MemberController {
         return "redirect:/";
     }
     // [05-02] END
+
+    // [05-03] START
+    /**
+     * 등록된 모든 회원 조회
+     * @param model
+     * @return
+     */
+    @GetMapping("/members")
+    public String list(Model model) {
+        // 등록된 모든 회원 조회
+        List<Member> members = memberService.findMembers();
+        // 조회 결과를 모델에 추가
+        model.addAttribute("members", members);
+        // 뷰 이름 반환
+        return "members/memberList";
+    }
+    // [05-03] END
 }
 // [04-01] END
