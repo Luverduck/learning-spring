@@ -4,10 +4,14 @@ import hello.hello_spring.domain.Member;
 import hello.hello_spring.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
+// [06-05] START
+@Transactional
+// [06-05] END
 // [03-04] START
 @Service
 public class MemberService {

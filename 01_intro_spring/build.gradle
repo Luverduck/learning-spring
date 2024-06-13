@@ -18,9 +18,12 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	// [06-05] START
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa' // JPA 의존성
+	// [06-05] END
 	// [06-02] START
-	implementation 'org.springframework.boot:spring-boot-starter-jdbc' // JDBC 의존성 추가
-	runtimeOnly 'com.h2database:h2' // H2 데이터베이스 의존성 추가
+//	implementation 'org.springframework.boot:spring-boot-starter-jdbc' // JDBC 의존성
+	runtimeOnly 'com.h2database:h2' // H2 데이터베이스 의존성
 	// [06-02] END
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
