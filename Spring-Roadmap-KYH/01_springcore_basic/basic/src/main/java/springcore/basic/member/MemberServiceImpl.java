@@ -3,7 +3,7 @@ package springcore.basic.member;
 public class MemberServiceImpl implements MemberService {
 
     // 회원 데이터 접근 객체
-    private MemberRepository memberRepository = new MemoryMemberRepository();
+    private final MemberRepository memberRepository = new MemoryMemberRepository();
 
     // 회원 가입 구현
     @Override
