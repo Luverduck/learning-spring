@@ -22,7 +22,7 @@ public class OrderApp {
         memberService.join(member);
 
         // 주문 생성 및 생성된 주문 반환
-        Order order = orderService.createOrder(memberId, "itemA", 10000);
+        Order order = orderService.createOrder(memberId, "itemA", 20000);
 
         // 생성된 주문 확인
         System.out.println("order = " + order);
