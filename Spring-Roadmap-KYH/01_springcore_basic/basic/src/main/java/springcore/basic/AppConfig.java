@@ -1,6 +1,8 @@
 package springcore.basic;
 
+import springcore.basic.discount.DiscountPolicy;
 import springcore.basic.discount.FixDiscountPolicy;
+import springcore.basic.member.MemberRepository;
 import springcore.basic.member.MemberService;
 import springcore.basic.member.MemberServiceImpl;
 import springcore.basic.member.MemoryMemberRepository;
@@ -9,14 +11,23 @@ import springcore.basic.order.OrderServiceImpl;
 
 public class AppConfig {
 
-    // MemberService의 구현체 생성
+    // MemberService
     public MemberService memberService() {
-        return new MemberServiceImpl(new MemoryMemberRepository());
+        return new MemberServiceImpl(memberRepository());
+    }
+    // OrderService
+    public OrderService orderService() {
+        return new OrderServiceImpl(memberRepository(), discountPolicy());
     }
 
-    // OrderService의 구현체 생성
-    public OrderService orderService() {
-        return new OrderServiceImpl(new MemoryMemberRepository(), new FixDiscountPolicy());
+    // MemberRepository
+    public MemberRepository memberRepository() {
+        return new MemoryMemberRepository();
+    }
+
+    // DiscountPolicy
+    public DiscountPolicy discountPolicy() {
+        return new FixDiscountPolicy();
     }
 
 }
