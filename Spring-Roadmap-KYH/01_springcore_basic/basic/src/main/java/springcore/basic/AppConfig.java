@@ -35,8 +35,7 @@ public class AppConfig {
     // DiscountPolicy
     @Bean
     public DiscountPolicy discountPolicy() {
-        // return new FixDiscountPolicy();
-        return new RateDiscountPolicy(); // 할인 정책을 % 할인으로 변경
+        return new RateDiscountPolicy();
     }
 
 }
