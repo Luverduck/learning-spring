@@ -1,5 +1,7 @@
 package springcore.basic;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import springcore.basic.member.Grade;
 import springcore.basic.member.Member;
 import springcore.basic.member.MemberService;
@@ -8,13 +10,14 @@ import springcore.basic.order.OrderService;
 
 public class OrderApp {
     public static void main(String[] args) {
-        // AppConfig 생성
-        AppConfig appConfig = new AppConfig();
 
-        // 회원 서비스 생성
-        MemberService memberService = appConfig.memberService();
-        // 주문 서비스 생성
-        OrderService orderService = appConfig.orderService();
+        // 스프링 컨테이너 생성
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
+        
+        // 회원 서비스 의존 관계 주입
+        MemberService memberService = applicationContext.getBean("memberService", MemberService.class);
+        // 주문 서비스 의존 관계 주입
+        OrderService orderService = applicationContext.getBean("orderService", OrderService.class);
 
         // 회원 생성 및 회원 가입
         Long memberId = 1L;
@@ -27,5 +30,6 @@ public class OrderApp {
         // 생성된 주문 확인
         System.out.println("order = " + order);
         System.out.println("order.calculatePrice = " + order.calculatePrice());
+
     }
 }
