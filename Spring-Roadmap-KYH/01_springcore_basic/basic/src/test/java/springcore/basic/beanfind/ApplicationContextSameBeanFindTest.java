@@ -33,7 +33,7 @@ public class ApplicationContextSameBeanFindTest {
     AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(SameBeanConfig.class);
 
     @Test
-    @DisplayName("동일한 타입이 둘 이상 존재하는 컨테이너에서 이름으로 빈을 조회할 수 있다.")
+    @DisplayName("동일한 타입의 빈이 둘 이상 존재하는 컨테이너에서 이름으로 빈 조회")
     void findBeanByName() {
         // 컨테이너에서 이름이 memberRepository1인 빈을 조회하여 반환한다.
         MemberRepository bean = ac.getBean("memberRepository1", MemberRepository.class);
@@ -42,7 +42,7 @@ public class ApplicationContextSameBeanFindTest {
     }
 
     @Test
-    @DisplayName("동일한 타입이 둘 이상 존재하는 컨테이너에서 타입으로 빈을 조회하면 오류가 발생한다.")
+    @DisplayName("동일한 타입의 빈이 둘 이상 존재하는 컨테이너에서 타입으로 빈을 조회하면 예외가 발생한다.")
     void findBeanByTypeDuplicate() {
         // 컨테이너에서 타입이 MemberRepository인 빈을 조회한다.
         // 테스트 성공 조건은 빈 조회 중 NoUniqueBeanDefinitionException 예외의 발생이다.
@@ -50,7 +50,7 @@ public class ApplicationContextSameBeanFindTest {
     }
 
     @Test
-    @DisplayName("동일한 타입이 둘 이상 존재하는 컨테이너에서 특정 타입의 빈을 모두 조회할 때 getBeansOfType()를 사용한다.")
+    @DisplayName("동일한 타입의 빈이 둘 이상 존재하는 컨테이너에서 특정 타입으로 등록된 모든 빈 조회")
     void findAllBeanByName() {
         // 컨테이너에서 타입이 MemberRepository인 모든 빈을 조회하여 Map 형태로 반환한다.
         Map<String, MemberRepository> beans = ac.getBeansOfType(MemberRepository.class);
