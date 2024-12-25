@@ -14,6 +14,10 @@ class StatefulServiceTest {
         public StatefulService statefulService() {
             return new StatefulService();
         }
+        @Bean
+        public StatelessService statelessService() {
+            return new StatelessService();
+        }
     }
 
     @Test
