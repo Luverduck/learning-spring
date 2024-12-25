@@ -1,10 +1,11 @@
 package springcore.basic.singleton;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import springcore.basic.AppConfig;
 import springcore.basic.member.MemberService;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class SingletonTest {
 
@@ -23,8 +24,26 @@ public class SingletonTest {
         System.out.println("memberService1 = " + memberService1);
         System.out.println("memberService1 = " + memberService2);
 
-        // 테스트 성공 조건은 두 객체의 참조가 다를 경우이다.
-        Assertions.assertThat(memberService1).isNotSameAs(memberService2);
+        // 테스트 성공 조건은 두 객체의 참조가 다른 경우이다.
+        assertThat(memberService1).isNotSameAs(memberService2);
+    }
+
+    @Test
+    @DisplayName("싱글톤 패턴을 적용한 객체의 사용")
+    void singletonServiceTest() {
+        // 싱글톤 패턴이 적용된 객체의 반환
+        SingletonService singletonService1 = SingletonService.getInstance();
+        SingletonService singletonService2 = SingletonService.getInstance();
+        
+        // 두 객체의 참조값 비교
+        System.out.println("singletonService1 = " + singletonService1);
+        System.out.println("singletonService2 = " + singletonService2);
+
+        // 테스트 성공 조건은 두 객체의 참조가 같은 경우이다.
+        assertThat(singletonService1).isSameAs(singletonService2);
+        // [참고]
+        // isSameAs() : 두 객체의 참조가 같은지 비교 ( == )
+        // isEqualTo() : 두 객체의 값이 같은지 비교 ( equals() )
     }
 
 }
