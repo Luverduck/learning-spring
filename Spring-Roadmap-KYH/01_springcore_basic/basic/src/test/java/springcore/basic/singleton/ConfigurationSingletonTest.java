@@ -40,4 +40,16 @@ public class ConfigurationSingletonTest {
         assertThat(orderService.getMemberRepository()).isSameAs(memberRepository);
     }
 
+    @Test
+    void configurationDeep() {
+        // 스프링 컨테이너 생성
+        ApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
+
+        // 컨테이너에서 AppConfig 타입 빈 반환
+        AppConfig bean = ac.getBean(AppConfig.class);
+        
+        // 반환한 빈 객체의 클래스 출력
+        System.out.println("bean = " + bean.getClass());
+    }
+
 }
