@@ -1,11 +1,16 @@
 package springcore.basic.member;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 public class MemberServiceImpl implements MemberService {
 
     // 회원 데이터 접근 객체
     private final MemberRepository memberRepository;
 
     // 생성자 주입
+    @Autowired
     public MemberServiceImpl(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }

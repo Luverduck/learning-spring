@@ -1,8 +1,11 @@
 package springcore.basic.member;
 
+import org.springframework.stereotype.Component;
+
 import java.util.HashMap;
 import java.util.Map;
 
+@Component
 public class MemoryMemberRepository implements MemberRepository {
     
     // 회원 정보 저장소
