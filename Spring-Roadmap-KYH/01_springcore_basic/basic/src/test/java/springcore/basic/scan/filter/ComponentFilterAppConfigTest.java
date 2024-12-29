@@ -6,7 +6,6 @@ import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.FilterType;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -16,8 +15,9 @@ public class ComponentFilterAppConfigTest {
     // 필터가 적용된 컴포넌트 스캔을 사용하는 설정 클래스
     @Configuration
     @ComponentScan(
-        includeFilters = @ComponentScan.Filter(type = FilterType.ANNOTATION, classes = MyIncludeComponent.class),
-        excludeFilters = @ComponentScan.Filter(type = FilterType.ANNOTATION, classes = MyExcludeComponent.class)
+        // @Filter의 type은 기본값이 ANNOTATION이며, 생략할 수 있다
+        includeFilters = @ComponentScan.Filter(classes = MyIncludeComponent.class),
+        excludeFilters = @ComponentScan.Filter(classes = MyExcludeComponent.class)
     )
     static class ComponentFilterAppConfig {
 
