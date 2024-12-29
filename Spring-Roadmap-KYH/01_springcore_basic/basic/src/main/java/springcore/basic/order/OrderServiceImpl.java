@@ -6,7 +6,7 @@ import springcore.basic.discount.DiscountPolicy;
 import springcore.basic.member.Member;
 import springcore.basic.member.MemberRepository;
 
-@Component
+@Component //("service")
 public class OrderServiceImpl implements OrderService {
 
     // 회원 저장소
