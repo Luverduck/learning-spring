@@ -22,6 +22,19 @@ public class OrderServiceImpl implements OrderService {
         this.discountPolicy = discountPolicy;
     }
 
+    /*
+    // 수정자 주입
+    @Autowired
+    public setMemberRepository(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
+    }
+
+    @Autowired
+    public setDiscountPolicy(DiscountPolicy discountPolicy) {
+        this.discountPolicy = discountPolicy;
+    }
+    */
+
     // 주문 생성
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
