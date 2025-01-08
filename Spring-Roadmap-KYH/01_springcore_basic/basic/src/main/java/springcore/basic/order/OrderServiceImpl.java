@@ -1,13 +1,13 @@
 package springcore.basic.order;
 
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import springcore.basic.discount.DiscountPolicy;
 import springcore.basic.member.Member;
 import springcore.basic.member.MemberRepository;
 
 @Component //("service")
-@RequiredArgsConstructor // 생성자 주입 코드 대체
+// @RequiredArgsConstructor // 생성자 주입 코드 대체
 public class OrderServiceImpl implements OrderService {
 
     // 회원 저장소
@@ -15,6 +15,13 @@ public class OrderServiceImpl implements OrderService {
 
     // 할인 정책
     private final DiscountPolicy discountPolicy;
+
+    // 생성자 주입
+    @Autowired
+    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+        this.memberRepository = memberRepository;
+        this.discountPolicy = discountPolicy;
+    }
 
     // 주문 생성
     @Override
