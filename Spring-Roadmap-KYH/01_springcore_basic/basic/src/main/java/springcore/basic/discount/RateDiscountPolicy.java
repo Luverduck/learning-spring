@@ -1,9 +1,11 @@
 package springcore.basic.discount;
 
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 import springcore.basic.member.Grade;
 import springcore.basic.member.Member;
 
+@Primary // DiscountPolicy 타입 기본 빈으로 지정
 @Component
 public class RateDiscountPolicy implements DiscountPolicy {
 
