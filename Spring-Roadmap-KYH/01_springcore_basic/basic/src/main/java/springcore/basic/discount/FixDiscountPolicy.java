@@ -1,8 +1,10 @@
 package springcore.basic.discount;
 
+import org.springframework.stereotype.Component;
 import springcore.basic.member.Grade;
 import springcore.basic.member.Member;
 
+@Component
 public class FixDiscountPolicy implements DiscountPolicy {
 
     // 할인 금액 (고정 금액)
