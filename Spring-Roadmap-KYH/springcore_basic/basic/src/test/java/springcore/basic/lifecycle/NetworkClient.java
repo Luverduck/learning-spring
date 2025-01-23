@@ -1,5 +1,8 @@
 package springcore.basic.lifecycle;
 
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
+
 public class NetworkClient {
 
     private String url;
@@ -29,6 +32,7 @@ public class NetworkClient {
     }
 
     // 빈 초기화시 실행할 메소드 정의
+    @PostConstruct
     public void init() throws Exception {
         System.out.println("NetworkClient.init()");
         connect();
@@ -36,6 +40,7 @@ public class NetworkClient {
     }
 
     // 빈 소멸시 실행할 메소드 정의
+    @PreDestroy
     public void close() throws Exception {
         System.out.println("NetworkClient.close()");
         disconnect();
