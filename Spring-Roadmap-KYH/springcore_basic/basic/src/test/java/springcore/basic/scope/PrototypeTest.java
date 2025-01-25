@@ -28,7 +28,7 @@ public class PrototypeTest {
         // 컨테이너 생성
         AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(PrototypeBean.class);
 
-        // 컨테이너에서 싱글톤 스코프의 스프링 빈 반환
+        // 컨테이너에서 프로토타입 스코프의 스프링 빈 반환
         PrototypeBean prototypeBean1 = ac.getBean(PrototypeBean.class);
         PrototypeBean prototypeBean2 = ac.getBean(PrototypeBean.class);
 
