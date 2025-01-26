@@ -32,6 +32,9 @@ dependencies {
 	// - javax.inject.Provider를 사용하기 위함
 	implementation 'jakarta.inject:jakarta.inject-api:2.0.1'
 
+	// 스프링의 웹 개발을 위한 라이브러리를 의존성으로 추가
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+
 	// Lombok 라이브러리 추가 시작
 	compileOnly 'org.projectlombok:lombok' // 컴파일 타임에만 Lombok 포함
 	annotationProcessor 'org.projectlombok:lombok' // Lombok의 어노테이션 프로세서 활성화
