@@ -3,6 +3,8 @@ package springcore.basic.scope;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.ObjectFactory;
+import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Scope;
@@ -32,33 +34,17 @@ public class SingletonWithPrototypeTest {
 
     @Scope("singleton")
     static class ClientBean {
-        private final PrototypeBean prototypeBean;
         @Autowired
-        public ClientBean(PrototypeBean prototypeBean) {
-            this.prototypeBean = prototypeBean;
-        }
+        private ObjectFactory<PrototypeBean> prototypeBeanFactory;
+        @Autowired
+        private ObjectProvider<PrototypeBean> prototypeBeanProvider;
+
         public int logic() {
+            // PrototypeBean prototypeBean = prototypeBeanFactory.getObject();
+            PrototypeBean prototypeBean = prototypeBeanProvider.getObject();
             prototypeBean.addCount();
             return prototypeBean.getCount();
         }
-    }
-
-    @Test
-    void prototypeFind() {
-        // 컨테이너 생성
-        AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(PrototypeBean.class);
-
-        // 컨테이너에서 프로토타입 스코프의 스프링 빈 반환
-        PrototypeBean prototypeBean1 = ac.getBean(PrototypeBean.class);
-        // addCount() 호출 후 빈의 count 필드 출력
-        prototypeBean1.addCount();
-        assertThat(prototypeBean1.getCount()).isEqualTo(1);
-
-        // 컨테이너에서 프로토타입 스코프의 스프링 빈 반환
-        PrototypeBean prototypeBean2 = ac.getBean(PrototypeBean.class);
-        // addCount() 호출 후 빈의 count 필드 출력
-        prototypeBean2.addCount();
-        assertThat(prototypeBean2.getCount()).isEqualTo(1);
     }
 
     @Test
@@ -76,7 +62,7 @@ public class SingletonWithPrototypeTest {
         ClientBean clientBean2 = ac.getBean(ClientBean.class);
         // 싱글톤 빈 안의 프로토타입 빈의 필드 count를 1만큼 증가
         int count2 = clientBean2.logic();
-        assertThat(count2).isEqualTo(2);
+        assertThat(count2).isEqualTo(1);
     }
 
 }
