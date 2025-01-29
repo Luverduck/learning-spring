@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.NoSuchElementException;
 
 /**
  * JDBC - DriverManager 사용
@@ -44,7 +45,43 @@ public class MemberRepositoryV0 {
             // DB 자원 해제
             close(con, pstmt, null);
         }
+    }
 
+    // 회원 정보 조회
+    public Member findById(String memberId) throws SQLException {
+        // 실행할 SQL 쿼리 준비
+        String sql = "select * from member where member_id = ?";
+
+        // 변수 초기화
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        try {
+            // 커넥션 생성
+            con = getConnection();
+            // 실행할 SQL 쿼리 설정
+            pstmt = con.prepareStatement(sql);
+            // SQL 쿼리 파라미터 바인딩
+            pstmt.setString(1, memberId);
+            // SQL 쿼리 실행 후 그 결과 저장
+            rs = pstmt.executeQuery();
+            // SQL 쿼리 실행 결과 반환
+            if(rs.next()) { // 최초 호출시 ResultSet의 커서를 0에서 1로 이동 (데이터 존재 유무)
+                Member member = new Member();
+                member.setMemberId(rs.getString("member_id"));
+                member.setMoney(rs.getInt("money"));
+                return member;
+            } else {
+                throw new NoSuchElementException("Member not found : memberID=" + memberId);
+            }
+        } catch(SQLException e) {
+            log.error("DB Error", e);
+            throw e;
+        } finally {
+            // DB 자원 해제
+            close(con, pstmt, rs);
+        }
     }
 
     // DB 커넥션 생성
