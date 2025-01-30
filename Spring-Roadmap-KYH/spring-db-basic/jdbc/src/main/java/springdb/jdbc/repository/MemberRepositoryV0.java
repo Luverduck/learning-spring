@@ -84,6 +84,65 @@ public class MemberRepositoryV0 {
         }
     }
 
+    // 회원 정보 수정
+    public void update(String memberId, int money) throws SQLException {
+        // 실행할 SQL 쿼리 준비
+        String sql = "update member set money = ? where member_id = ?";
+
+        // 변수 초기화
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        try {
+            // 커넥션 생성
+            con = getConnection();
+            // 실행할 SQL 쿼리 설정
+            pstmt = con.prepareStatement(sql);
+            // SQL 쿼리 파라미터 바인딩
+            pstmt.setInt(1, money);
+            pstmt.setString(2, memberId);
+            // SQL 쿼리 실행 후 영향받은 행의 수 반환
+            int resultSize = pstmt.executeUpdate();
+            log.info("resultSize={}", resultSize);
+        } catch(SQLException e) {
+            log.error("DB Error", e);
+            throw e;
+        } finally {
+            // DB 자원 해제
+            close(con, pstmt, rs);
+        }
+    }
+
+    // 회원 정보 삭제
+    public void delete(String memberId) throws SQLException {
+        // 실행할 SQL 쿼리 준비
+        String sql = "delete from member where member_id = ?";
+
+        // 변수 초기화
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        try {
+            // 커넥션 생성
+            con = getConnection();
+            // 실행할 SQL 쿼리 설정
+            pstmt = con.prepareStatement(sql);
+            // SQL 쿼리 파라미터 바인딩
+            pstmt.setString(1, memberId);
+            // SQL 쿼리 실행 후 영향받은 행의 수 반환
+            int resultSize = pstmt.executeUpdate();
+            log.info("resultSize={}", resultSize);
+        } catch(SQLException e) {
+            log.error("DB Error", e);
+            throw e;
+        } finally {
+            // DB 자원 해제
+            close(con, pstmt, rs);
+        }
+    }
+
     // DB 커넥션 생성
     private Connection getConnection() {
         return DBConnectionUtil.getConnection();
