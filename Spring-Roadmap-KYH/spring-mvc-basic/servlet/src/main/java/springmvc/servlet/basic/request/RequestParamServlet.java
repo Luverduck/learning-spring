@@ -40,6 +40,7 @@ public class RequestParamServlet extends HttpServlet {
         String[] usernames = request.getParameterValues("username");
         for(var name : usernames)
             System.out.println("name = " + name);
+        System.out.println("age = " + request.getParameter("age"));
         System.out.println("[동일한 이름의 쿼리 파라미터가 여러 개인 경우] - END");
         System.out.println();
     }
