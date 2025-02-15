@@ -51,7 +51,7 @@ class MemberServiceV1Test {
     void accountTransfer() throws SQLException {
         // 로직 실행 전 테스트 데이터 저장
         Member memberA = new Member(MEMBER_A, 10000);
-        Member memberB = new Member(MEMBER_A, 10000);
+        Member memberB = new Member(MEMBER_B, 10000);
         memberRepository.save(memberA);
         memberRepository.save(memberB);
 
