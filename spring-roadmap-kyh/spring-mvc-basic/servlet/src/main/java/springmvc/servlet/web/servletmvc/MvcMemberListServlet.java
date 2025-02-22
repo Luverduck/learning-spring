@@ -24,9 +24,9 @@ public class MvcMemberListServlet extends HttpServlet {
         List<Member> members = memberRepository.findAll();
         // 반환한 회원 정보를 Attribute에 저장
         request.setAttribute("members", members);
-        // 클라이언트의 요청을 처리할 JSP 경로
+        // 응답으로 반환할 뷰의 경로
         String viewPath = "/WEB-INF/views/members.jsp";
-        // 클라이언트의 요청을 지정한 JSP로 전달
+        // 클라이언트의 요청을 지정한 뷰로 전달
         RequestDispatcher dispatcher = request.getRequestDispatcher(viewPath);
         dispatcher.forward(request, response);
     }
