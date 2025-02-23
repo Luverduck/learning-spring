@@ -38,7 +38,7 @@ public class FrontControllerServletV1 extends HttpServlet {
             response.setStatus(HttpServletResponse.SC_NOT_FOUND);
             return;
         }
-        // 조회한 컨트롤러의 HTTP 요청 처리 메소드 출력
+        // 조회한 컨트롤러의 HTTP 요청 처리 메소드 실행
         controller.process(request, response);
     }
 }
