@@ -39,9 +39,9 @@ public class FrontControllerServletV2 extends HttpServlet {
             response.setStatus(HttpServletResponse.SC_NOT_FOUND);
             return;
         }
-        // 조회한 컨트롤러의 HTTP 요청 처리 메소드 실행 후 뷰 반환
+        // 조회한 컨트롤러의 HTTP 요청 처리 메소드 실행 후 뷰 처리 객체 반환
         MyView view = controller.process(request, response);
-        // 뷰를 통해 HTML 문서를 생성
+        // 뷰 렌더링 메소드 실행
         view.render(request, response);
     }
 }

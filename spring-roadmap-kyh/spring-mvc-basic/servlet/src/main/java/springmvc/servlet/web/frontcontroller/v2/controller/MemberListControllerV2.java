@@ -22,7 +22,7 @@ public class MemberListControllerV2 implements ControllerV2 {
         List<Member> members = memberRepository.findAll();
         // 반환한 회원 정보를 Attribute에 저장
         request.setAttribute("members", members);
-        // 회원 목록 HTML 문서를 생성하는 뷰 반환
+        // 회원 목록 JSP를 실행하는 뷰 처리 객체 반환
         return new MyView("/WEB-INF/views/members.jsp");
     }
 }

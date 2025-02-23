@@ -17,7 +17,7 @@ public class MyView {
         this.viewPath = viewPath;
     }
 
-    // 뷰로 요청 전달
+    // 뷰 랜더링
     public void render(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // 클라이언트의 요청을 지정된 뷰로 전달
         RequestDispatcher dispatcher = request.getRequestDispatcher(viewPath);

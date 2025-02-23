@@ -26,7 +26,7 @@ public class MemberSaveControllerV2 implements ControllerV2 {
         memberRepository.save(member);
         // 회원 저장소에 저장된 회원 정보를 Attribute에 저장
         request.setAttribute("member", member);
-        // 회원 저장 HTML 문서를 생성하는 뷰 반환
+        // 회원 저장 JSP를 실행하는 뷰 처리 객체 반환
         return new MyView("/WEB-INF/views/save-result.jsp");
     }
 }
