@@ -30,7 +30,6 @@ public class FrontControllerServletV1 extends HttpServlet {
     // 클라이언트의 요청을 받아 해당 요청을 처리할 컨트롤러 조회 및 호출
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("FrontControllerServletV1.service");
         // HTTP 요청에서 URL 반환
         String requestURI = request.getRequestURI();
         // 매핑 정보에서 해당 URL의 요청을 처리할 컨트롤러 조회
