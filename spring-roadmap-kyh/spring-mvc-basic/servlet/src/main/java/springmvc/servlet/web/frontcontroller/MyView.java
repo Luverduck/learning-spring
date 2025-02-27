@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.Map;
 
 public class MyView {
 
@@ -19,8 +20,22 @@ public class MyView {
 
     // 뷰 랜더링
     public void render(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // 클라이언트의 요청을 지정된 뷰로 전달
+        // request와 response를 지정된 뷰로 전달
         RequestDispatcher dispatcher = request.getRequestDispatcher(viewPath);
         dispatcher.forward(request, response);
+    }
+
+    // 뷰 랜더링
+    public void render(Map<String, Object> model, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // 모델의 데이터를 request에 추가
+        changeModelToRequestAttribute(model, request);
+        // request와 response를 지정된 뷰로 전달
+        RequestDispatcher dispatcher = request.getRequestDispatcher(viewPath);
+        dispatcher.forward(request, response);
+    }
+
+    // 모델의 데이터를 request에 추가
+    private void changeModelToRequestAttribute(Map<String, Object> model, HttpServletRequest request) {
+        model.forEach((key, value) -> request.setAttribute(key, value));
     }
 }
