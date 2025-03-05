@@ -19,7 +19,7 @@ public class MemberListControllerV3 implements ControllerV3 {
         // 비즈니스 로직 실행
         List<Member> members = memberRepository.findAll();
         // 비즈니스 로직의 결과를 모델에 저장
-        ModelView mv = new ModelView("member");
+        ModelView mv = new ModelView("members");
         mv.getModel().put("members", members);
         // 모델과 뷰의 이름이 저장된 ModelView 객체 반환
         return mv;

@@ -19,7 +19,7 @@ public class MemberListControllerV4 implements ControllerV4 {
         // 비즈니스 로직 실행
         List<Member> members = memberRepository.findAll();
         // 비즈니스 로직의 결과를 모델에 저장
-        ModelView mv = new ModelView("member");
+        ModelView mv = new ModelView("members");
         model.put("members", members);
         // 뷰의 이름 반환
         return "members";
