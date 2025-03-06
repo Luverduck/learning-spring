@@ -72,7 +72,7 @@ public class FrontControllerServletV5 extends HttpServlet {
         ModelView mv = adapter.handle(request, response, handler);
         // 반환된 뷰의 이름을 통해 뷰 객체 반환
         String viewName = mv.getViewName();
-        MyView view = viewResolve(viewName);
+        MyView view = viewResolver(viewName);
         // 뷰 렌더링 메소드 실행
         view.render(mv.getModel(), request, response);
     }
@@ -97,7 +97,7 @@ public class FrontControllerServletV5 extends HttpServlet {
     }
 
     // 뷰 반환
-    private MyView viewResolve(String viewName) {
+    private MyView viewResolver(String viewName) {
         // 뷰의 이름을 통해 실제 뷰의 경로 반환
         return new MyView("/WEB-INF/views/" + viewName + ".jsp");
     }

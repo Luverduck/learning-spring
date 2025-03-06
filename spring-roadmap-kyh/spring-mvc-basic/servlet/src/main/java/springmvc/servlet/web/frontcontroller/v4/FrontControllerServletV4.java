@@ -46,7 +46,7 @@ public class FrontControllerServletV4 extends HttpServlet {
         // 조회한 컨트롤러의 HTTP 요청 처리 메소드 실행 후 뷰의 이름 반환
         String viewName = controller.process(paramMap, model);
         // 반환된 뷰의 이름을 통해 실제 뷰(JSP)의 경로 반환
-        MyView view = viewResolve(viewName);
+        MyView view = viewResolver(viewName);
         // 뷰 렌더링 메소드 실행
         view.render(model, request, response);
     }
@@ -61,7 +61,7 @@ public class FrontControllerServletV4 extends HttpServlet {
     }
 
     // 뷰의 이름을 통해 실제 뷰의 경로 반환
-    private MyView viewResolve(String viewName) {
+    private MyView viewResolver(String viewName) {
         return new MyView("/WEB-INF/views/" + viewName + ".jsp");
     }
 }
