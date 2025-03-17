@@ -12,6 +12,7 @@ public class MappingController {
     /**
      * @RequestMapping의 value
      * 핸들러가 처리할 요청 URL을 지정한다.
+     * 핸들러가 처리할 요청 URL이 여러 개인 경우 배열의 형태로 지정한다.
      */
     @RequestMapping("/mapping-basic")
     public String mappingBasic() {
@@ -19,10 +20,6 @@ public class MappingController {
         return "ok";
     }
 
-    /**
-     * @RequestMapping의 value 배열
-     * 핸들러가 처리할 요청 URL이 여러 개인 경우 배열의 형태로 지정한다.
-     */
     @RequestMapping({"/mapping-multi1", "/mapping-multi2"})
     public String mappingMultiURL() {
         log.info("mappingMultiURL");
@@ -59,13 +56,20 @@ public class MappingController {
     /**
      * 경로 변수 (Path Variable)
      * 요청 URL의 일부를 변수화한다.
-     * 요청 URL을 변수화하는 부분을 경로 변수(PathVariable)라 한다.
-     * 요청 URL에 포함된 경로 변수는 @PathVraible을 통해 반환할 수 있다.
+     * 요청 URL을 변수화하는 부분을 경로 변수(Path Variable)라 한다.
+     * 요청 URL에 포함된 경로 변수는 @PathVariable 통해 반환할 수 있다.
      * 경로 변수명이 매개변수명과 다를 경우 name의 값을 지정해야 한다.
+     * 요청 URL에 여러 개의 경로 변수를 포함할 수 있다.
      */
     @GetMapping("/mapping/{userId}")
     public String mappingPath(@PathVariable("userId") String data) {
         log.info("mappingPath userId={}", data);
+        return "ok";
+    }
+
+    @GetMapping("/mapping/users/{userId}/orders/{orderId}")
+    public String mappingPath(@PathVariable String userId, @PathVariable Long orderId) {
+        log.info("mappingPath userId={}, orderId={}", userId, orderId);
         return "ok";
     }
 
