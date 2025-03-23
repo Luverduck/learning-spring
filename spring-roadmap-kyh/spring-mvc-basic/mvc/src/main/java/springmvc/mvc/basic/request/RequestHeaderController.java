@@ -17,13 +17,14 @@ import java.util.Locale;
 public class RequestHeaderController {
 
     @RequestMapping("/headers")
-    public String headers(HttpServletRequest request,
-                          HttpServletResponse response,
-                          HttpMethod httpMethod,
-                          Locale locale,
-                          @RequestHeader MultiValueMap<String, String> headerMap,
-                          @RequestHeader("host") String host,
-                          @CookieValue(value = "myCookie", required = false) String cookie
+    public String headers(
+            HttpServletRequest request,
+            HttpServletResponse response,
+            HttpMethod httpMethod,
+            Locale locale,
+            @RequestHeader MultiValueMap<String, String> headerMap,
+            @RequestHeader("host") String host,
+            @CookieValue(value = "myCookie", required = false) String cookie
     ) {
 
         // 지정한 타입의 요청 또는 응답 (ServletRequest, ServletResponse 또는 그 하위 타입)
