@@ -5,9 +5,11 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.MultiValueMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import springmvc.mvc.basic.HelloData;
 
 import java.io.IOException;
 import java.util.Map;
@@ -115,6 +117,53 @@ public class RequestParamController {
         // HTTP 요청에 포함된 요청 파라미터 반환
         log.info("username={}, age={}", paramMap.get("username"), paramMap.get("age"));
         // HTTP 응답 본문에 응답 반환
+        return "ok";
+    }
+
+    // HTTP 요청 파라미터 - @ModelAttribute
+    // - @ModelAttribute를 사용하지 않는 경우
+    //   요청 파라미터를 바인딩 할 매개변수를 모두 선언해야 한다.
+/*
+    @ResponseBody
+    @RequestMapping("/model-attribute-v1")
+    public String modelAttributeV1(
+            @RequestParam String username,
+            @RequestParam int age
+    ) {
+        HelloData helloData = new HelloData();
+        helloData.setUsername(username);
+        helloData.setAge(age);
+        log.info("username={}, age={}", helloData.getUsername(), helloData.getAge());
+        log.info("helloData={}", helloData);
+        return "ok";
+    }
+*/
+
+    // HTTP 요청 파라미터 - @ModelAttribute
+    // - @ModelAttribute를 사용하는 경우
+    //   요청 파라미터가 핸들러 메소드의 모델 매개변수에 바인딩된다.
+    //   바인딩 할 요청 파라미터가 모두 포함된 모델이 되는 클래스를 미리 정의해야 한다.
+    @ResponseBody
+    @RequestMapping("/model-attribute-v1")
+    public String modelAttributeV1(
+            @ModelAttribute HelloData helloData
+    ) {
+        log.info("username={}, age={}", helloData.getUsername(), helloData.getAge());
+        log.info("helloData={}", helloData);
+        return "ok";
+    }
+
+    // HTTP 요청 파라미터 - @ModelAttribute
+    // - 핸들러 메소드의 매개변수가 POJO인 경우 @ModelAttribute를 생략할 수 있다.
+    //   기본 타입, Wrapper 타입 및 String은 @RequestParam으로 처리된다.
+    //   - POJO (Plain Old Java Object) : 특정 프레임워크나 라이브러리에 의존하지 않는 순수한 자바 객체
+    @ResponseBody
+    @RequestMapping("/model-attribute-v2")
+    public String modelAttributeV2(
+            HelloData helloData
+    ) {
+        log.info("username={}, age={}", helloData.getUsername(), helloData.getAge());
+        log.info("helloData={}", helloData);
         return "ok";
     }
 }
