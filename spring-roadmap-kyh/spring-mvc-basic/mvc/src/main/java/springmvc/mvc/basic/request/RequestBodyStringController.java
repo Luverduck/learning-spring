@@ -21,8 +21,8 @@ import java.nio.charset.StandardCharsets;
 @Controller
 public class RequestBodyStringController {
 
-    // HTTP 요청 메시지 - 단순 텍스트
-    // - 서블릿의 입력 스트림를 통해 HTTP 요청 바디의 데이터를 읽을 수 있다.
+    // 서블릿의 입력 스트림 사용
+    // - 서블릿에서 입력 스트림을 반환하여 HTTP 요청 바디의 데이터를 읽을 수 있다.
     @PostMapping("/request-body-string-v1")
     public void requestBodyStringV1(HttpServletRequest request, HttpServletResponse response) throws IOException {
         // 서블릿에서 입력 스트림 반환
@@ -33,7 +33,7 @@ public class RequestBodyStringController {
         response.getWriter().write("ok");
     }
 
-    // HTTP 요청 메시지 - 단순 텍스트
+    // 서블릿의 입력 스트림 사용 - 핸들러 메소드의 스트림 타입 매개변수에 직접 바인딩
     // - 서블릿의 입출력 스트림은 핸들러 메소드의 입출력 스트림 타입의 매개변수에 바인딩된다.
     //   - 입력 스트림 : InputStream, Reader
     //   - 출력 스트림 : OutputStream, Writer
@@ -45,11 +45,21 @@ public class RequestBodyStringController {
         responseWriter.write("ok");
     }
 
-    // HTTP 요청 메시지 - 단순 텍스트
+    // @RequestBody 사용
+    // - 핸들러 메소드의 매개변수에 @RequestBody를 적용하면 HTTP 요청 바디의 데이터가 바인딩된다.
+    //   - @ResponseBody가 적용된 핸들러 메소드는 반환 데이터를 HTTP 응답 바디에 포함시킨다.
+    @ResponseBody
+    @PostMapping("/request-body-string-v3")
+    public String requestBodyStringV3(@RequestBody String messageBody) {
+        log.info("messageBody={}", messageBody);
+        return "ok";
+    }
+
+    // HttpEntity<T> 사용
     // - HttpEntity<T>를 통해 HTTP 요청 바디의 데이터를 읽을 수 있다.
     //   - HttpEntity<T>는 HTTP 메시지 전체를 추상화한 클래스로, HTTP 헤더와 바디의 데이터를 포함한다.
-    @PostMapping("/request-body-string-v3")
-    public HttpEntity<String> requestBodyStringV3(HttpEntity<String> httpEntity) {
+    @PostMapping("/request-body-string-v4")
+    public HttpEntity<String> requestBodyStringV4(HttpEntity<String> httpEntity) {
         // HTTP 요청 헤더
         HttpHeaders headers = httpEntity.getHeaders();
         log.info("headers={}", headers);
@@ -58,15 +68,5 @@ public class RequestBodyStringController {
         log.info("messageBody={}", messageBody);
         // HTTP 응답에 사용할 수 있다.
         return new HttpEntity<>("ok");
-    }
-
-    // HTTP 요청 메시지 - 단순 텍스트
-    // - 핸들러 메소드의 매개변수에 @RequestBody를 적용하면 HTTP 요청 바디의 데이터가 바인딩된다.
-    //   - @ResponseBody가 적용된 핸들러 메소드는 반환 데이터를 HTTP 응답 바디에 포함시킨다.
-    @ResponseBody
-    @PostMapping("/request-body-string-v4")
-    public String requestBodyStringV4(@RequestBody String messageBody) {
-        log.info("messageBody={}", messageBody);
-        return "ok";
     }
 }
