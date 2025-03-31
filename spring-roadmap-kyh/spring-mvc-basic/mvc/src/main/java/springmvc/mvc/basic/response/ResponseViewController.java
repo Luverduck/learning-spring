@@ -31,7 +31,7 @@ public class ResponseViewController {
     }
 
     // 뷰 템플릿 사용 - 요청 URL을 뷰의 이름으로 사용
-    // - 핸들러 메소드의 반환형이 void일 경우 요청 URL을 뷰의 이름으로 사용한다.
+    // - 핸들러의 반환형이 void일 경우 요청 URL을 뷰의 이름으로 사용한다.
     @RequestMapping("/response/hello")
     public void responseViewV3(Model model) {
         // Model 객체에 데이터 저장

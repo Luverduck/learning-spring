@@ -30,8 +30,8 @@ public class ResponseBodyController {
     }
 
     // @ResponseBody 사용
-    // @ResponseBody가 적용된 핸들러 메소드는 반환 데이터를 HTTP 응답 바디에 포함시킨다.
-    // @ResponseBody가 클래스에 적용될 경우 해당 클래스 안의 모든 핸들러 메소드는 반환 데이터를 HTTP 응답 바디에 포함시킨다.
+    // @ResponseBody가 적용된 핸들러는 반환 데이터를 HTTP 응답 바디에 포함시킨다.
+    // @ResponseBody가 클래스에 적용될 경우 해당 클래스 안의 모든 핸들러는 반환 데이터를 HTTP 응답 바디에 포함시킨다.
     @ResponseBody
     @GetMapping("/response-body-string-v2")
     public String responseBodyV2() {
@@ -41,7 +41,7 @@ public class ResponseBodyController {
     // HttpEntity<T> 사용
     // HTTP 메시지 전체를 추상화한 클래스로 HTTP 요청/응답의 모든 헤더와 바디 정보를 포함한다.
     // HttpEntity<String> 객체를 반환하면 해당 객체의 데이터를 HTTP 응답 바디에 포함시킨다.
-    // 핸들러 메소드에 @ResponseStatus를 적용하여 응답의 상태 코드를 지정할 수 있다.
+    // 핸들러에 @ResponseStatus를 적용하여 응답의 상태 코드를 지정할 수 있다.
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/response-body-string-v3")
     public HttpEntity<String> responseBodyV3() {
@@ -58,8 +58,8 @@ public class ResponseBodyController {
     }
 
     // @ResponseBody 사용
-    // @ResponseBody가 적용된 핸들러 메소드는 반환 데이터를 HTTP 응답 바디에 포함시킨다.
-    // @ResponseBody가 적용된 핸들러 메소드에서 Java 객체를 반환할 경우
+    // @ResponseBody가 적용된 핸들러는 반환 데이터를 HTTP 응답 바디에 포함시킨다.
+    // @ResponseBody가 적용된 핸들러에서 Java 객체를 반환할 경우
     // HTTP 메시지 컨버터에서 Java 객체의 정보를 JSON 데이터로 변환하여 HTTP 응답 바디에 포함시킨다.
     // - HTTP 응답의 상태 코드를 지정하기 위해서는 @ResponseStatus를 사용해야 한다.
     @ResponseStatus(HttpStatus.OK)

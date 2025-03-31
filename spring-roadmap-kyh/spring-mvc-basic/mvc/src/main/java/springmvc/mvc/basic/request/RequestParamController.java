@@ -30,7 +30,7 @@ public class RequestParamController {
     }
 
     // HTTP 요청 파라미터 - @RequestParam
-    // - 지정한 이름의 요청 파라미터의 값을 핸들러 메소드의 매개변수에 바인딩한다.
+    // 지정한 이름의 요청 파라미터의 값을 핸들러의 매개변수에 바인딩한다.
     @ResponseBody
     @RequestMapping("/request-param-v2")
     public String requestParamV2(
@@ -44,8 +44,8 @@ public class RequestParamController {
     }
 
     // HTTP 요청 파라미터 - @RequestParam
-    // - 핸들러 메소드의 매개변수 이름이 요청 파라미터의 이름과 같은 경우
-    //   @RequestParam에서 요청 파라미터의 이름 지정을 생략할 수 있다.
+    // 핸들러의 매개변수 이름이 요청 파라미터의 이름과 같은 경우
+    // @RequestParam에서 요청 파라미터의 이름 지정을 생략할 수 있다.
     @ResponseBody
     @RequestMapping("/request-param-v3")
     public String requestParamV3(
@@ -59,8 +59,8 @@ public class RequestParamController {
     }
 
     // HTTP 요청 파라미터 - @RequestParam
-    // - 핸들러 메소드의 매개변수 이름이 요청 파라미터의 이름과 같은 경우
-    //   기본 타입, Wrapper 타입 및 String 타입에 한하여 @RequestParam을 생략할 수 있다.
+    // 핸들러의 매개변수 이름이 요청 파라미터의 이름과 같은 경우
+    // 기본 타입, Wrapper 타입 및 String 타입에 한하여 @RequestParam을 생략할 수 있다.
     @ResponseBody
     @RequestMapping("/request-param-v4")
     public String requestParamV4(
@@ -74,8 +74,8 @@ public class RequestParamController {
     }
 
     // HTTP 요청 파라미터 - @RequestParam
-    // - @RequestParam의 required를 통해 요청 파라미터의 필수 여부를 설정할 수 있다.
-    //   required = true : 요청 매핑을 위해 지정한 이름의 요청 파라미터를 반드시 포함해야 한다.
+    // @RequestParam의 required를 통해 요청 파라미터의 필수 여부를 설정할 수 있다.
+    // required = true : 요청 매핑을 위해 지정한 이름의 요청 파라미터를 반드시 포함해야 한다.
     @ResponseBody
     @RequestMapping("/request-param-required")
     public String requestParamRequired(
@@ -89,9 +89,9 @@ public class RequestParamController {
     }
 
     // HTTP 요청 파라미터 - @RequestParam
-    // - @RequestParam의 defaultValue를 통해 요청 파라미터의 기본값을 설정할 수 있다.
-    //   defaultValue가 지정되면 요청 파라미터가 포함되지 않아도 기본값으로 바인딩된다.
-    //   defaultValue가 지정되면 required와 상관없이 핸들러 메소드의 매개변수에 값이 바인딩된다.
+    // @RequestParam의 defaultValue를 통해 요청 파라미터의 기본값을 설정할 수 있다.
+    // defaultValue가 지정되면 요청 파라미터가 포함되지 않아도 기본값으로 바인딩된다.
+    // defaultValue가 지정되면 required와 상관없이 핸들러의 매개변수에 값이 바인딩된다.
     @ResponseBody
     @RequestMapping("/request-param-default")
     public String requestParamDefault(
@@ -105,10 +105,9 @@ public class RequestParamController {
     }
 
     // HTTP 요청 파라미터 - @RequestParam
-    // - @RequestParam를 Map<String, String> 또는 MultiValueMap<String, String> 타입에 적용할 경우
-    //   모든 요청 파라미터를 Key-Value 형태로 바인딩한다.
-    //   - Map<String, String> : 하나의 요청 파라미터의 이름에 하나의 값만 바인딩된다.
-    //   - MultiValueMap<String, String> : 하나의 요청 파라미터의 이름에 여러 개의 값이 바인딩된다.
+    // @RequestParam를 Map<String, String> 또는 MultiValueMap<String, String> 타입에 적용할 경우 모든 요청 파라미터를 Key-Value 형태로 바인딩한다.
+    // - Map<String, String> : 하나의 요청 파라미터의 이름에 하나의 값만 바인딩된다.
+    // - MultiValueMap<String, String> : 하나의 요청 파라미터의 이름에 여러 개의 값이 바인딩된다.
     @ResponseBody
     @RequestMapping("/request-param-map")
     public String requestParamMap(
@@ -121,8 +120,7 @@ public class RequestParamController {
     }
 
     // HTTP 요청 파라미터 - @ModelAttribute
-    // - @ModelAttribute를 사용하지 않는 경우
-    //   요청 파라미터를 바인딩 할 매개변수를 모두 선언해야 한다.
+    // @ModelAttribute를 사용하지 않는 경우 요청 파라미터를 바인딩 할 매개변수를 모두 선언해야 한다.
 /*
     @ResponseBody
     @RequestMapping("/model-attribute-v1")
@@ -140,9 +138,9 @@ public class RequestParamController {
 */
 
     // HTTP 요청 파라미터 - @ModelAttribute
-    // - @ModelAttribute를 사용하는 경우
-    //   요청 파라미터가 핸들러 메소드의 모델 매개변수에 바인딩된다.
-    //   바인딩 할 요청 파라미터가 모두 포함된 모델이 되는 클래스를 미리 정의해야 한다.
+    // @ModelAttribute를 사용하는 경우
+    // 요청 파라미터가 핸들러의 모델 매개변수에 바인딩된다.
+    // 바인딩 할 요청 파라미터가 모두 포함된 모델이 되는 클래스를 미리 정의해야 한다.
     @ResponseBody
     @RequestMapping("/model-attribute-v1")
     public String modelAttributeV1(
@@ -154,9 +152,9 @@ public class RequestParamController {
     }
 
     // HTTP 요청 파라미터 - @ModelAttribute
-    // - 핸들러 메소드의 매개변수가 POJO인 경우 @ModelAttribute를 생략할 수 있다.
-    //   기본 타입, Wrapper 타입 및 String은 @RequestParam으로 처리된다.
-    //   - POJO (Plain Old Java Object) : 특정 프레임워크나 라이브러리에 의존하지 않는 순수한 자바 객체
+    // 핸들러의 매개변수가 POJO인 경우 @ModelAttribute를 생략할 수 있다.
+    // 기본 타입, Wrapper 타입 및 String은 @RequestParam으로 처리된다.
+    // - POJO (Plain Old Java Object) : 특정 프레임워크나 라이브러리에 의존하지 않는 순수한 자바 객체
     @ResponseBody
     @RequestMapping("/model-attribute-v2")
     public String modelAttributeV2(
