@@ -19,7 +19,7 @@ public class BasicController {
     private final ItemRepository itemRepository;
 
     /**
-     * 테스트용 데이터 추가를 위한 초기화 메소드
+     * 테스트용 데이터 추가
      */
     @PostConstruct
     public void init() {
