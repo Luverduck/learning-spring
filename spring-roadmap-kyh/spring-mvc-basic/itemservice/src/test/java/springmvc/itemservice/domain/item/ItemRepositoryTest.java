@@ -40,7 +40,7 @@ class ItemRepositoryTest {
         itemRepository.save(item1);
         itemRepository.save(item2);
         // 상품 목록 기능 테스트
-        List<Item> result = itemRepository.finddAll();
+        List<Item> result = itemRepository.findAll();
         // 기능 검증
         assertThat(result.size()).isEqualTo(2);
         assertThat(result).contains(item1, item2);

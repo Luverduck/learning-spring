@@ -28,7 +28,7 @@ public class ItemRepository {
     }
 
     // 상품 목록
-    public List<Item> finddAll() {
+    public List<Item> findAll() {
         return new ArrayList<>(store.values());
     }
 
