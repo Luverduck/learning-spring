@@ -4,10 +4,7 @@ import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import springmvc.itemservice.domain.item.Item;
 import springmvc.itemservice.domain.item.ItemRepository;
 
@@ -64,9 +61,73 @@ public class BasicController {
         return "basic/addForm";
     }
 
-    @PostMapping("/add")
-    public String save() {
-        return "XXX";
+    /**
+     * 상품 등록 처리 - @RequestParam
+     * @param itemName
+     * @param price
+     * @param quantity
+     * @param model
+     * @return
+     */
+//    @PostMapping("/add")
+    public String addItemV1(@RequestParam("itemName") String itemName,
+                            @RequestParam("price") int price,
+                            @RequestParam("quantity") Integer quantity,
+                            Model model) {
+        // 상품 객체 생성 후 필드를 요청 매개변수의 값으로 초기화
+        Item item = new Item();
+        item.setItemName(itemName);
+        item.setPrice(price);
+        item.setQuantity(quantity);
+        // 상품 등록 처리
+        itemRepository.save(item);
+        // 등록한 상품의 정보를 Model을 통해 View로 반환
+        model.addAttribute("item", item);
+        // 상품 상세 View의 이름 반환
+        return "basic/item";
     }
 
+    /**
+     * 상품 등록 처리 - @ModelAttribute
+     * @param item
+     * @return
+     */
+//    @PostMapping("/add")
+    public String addItemV2(@ModelAttribute("item") Item item) {
+        // 상품 등록 처리
+        itemRepository.save(item);
+        // @ModelAttribute가 적용된 매개변수는 핸들러 실행 완료 전에 Model에 자동으로 추가된다.
+        // Model에 추가할 때 @ModelAttribute의 name을 객체의 이름으로 사용한다.
+        // model.addAttribute("item", item);
+        // 상품 상세 View의 이름 반환
+        return "basic/item";
+    }
+
+    /**
+     * 상품 등록 처리 - @ModelAttribute의 name 생략
+     * @param item
+     * @return
+     */
+//    @PostMapping("/add")
+    public String addItemV3(@ModelAttribute Item item) {
+        // @ModelAttribute의 name을 명시하지 않을 경우 매개변수 타입의 첫 글자를 소문자로 바꾼 이름을 모델명으로 사용한다. (Item -> item)
+        // 상품 등록 처리
+        itemRepository.save(item);
+        // 상품 상세 View의 이름 반환
+        return "basic/item";
+    }
+
+    /**
+     * 상품 등록 처리 - @ModelAttribute의 생략
+     * @param item
+     * @return
+     */
+    @PostMapping("/add")
+    public String addItemV4(Item item) {
+        // 매개변수가 POJO 타입인 경우 @ModelAttribute를 생략할 수 있다.
+        // 상품 등록 처리
+        itemRepository.save(item);
+        // 상품 상세 View의 이름 반환
+        return "basic/item";
+    }
 }
