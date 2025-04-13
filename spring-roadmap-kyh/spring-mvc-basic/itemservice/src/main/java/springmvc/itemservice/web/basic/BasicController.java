@@ -62,7 +62,7 @@ public class BasicController {
     }
 
     /**
-     * 상품 등록 처리 - @RequestParam
+     * 상품 등록 - @RequestParam
      * @param itemName
      * @param price
      * @param quantity
@@ -88,7 +88,7 @@ public class BasicController {
     }
 
     /**
-     * 상품 등록 처리 - @ModelAttribute
+     * 상품 등록 - @ModelAttribute
      * @param item
      * @return
      */
@@ -104,7 +104,7 @@ public class BasicController {
     }
 
     /**
-     * 상품 등록 처리 - @ModelAttribute의 name 생략
+     * 상품 등록 - @ModelAttribute의 name 생략
      * @param item
      * @return
      */
@@ -118,7 +118,7 @@ public class BasicController {
     }
 
     /**
-     * 상품 등록 처리 - @ModelAttribute의 생략
+     * 상품 등록 - @ModelAttribute의 생략
      * @param item
      * @return
      */
@@ -129,5 +129,31 @@ public class BasicController {
         itemRepository.save(item);
         // 상품 상세 View의 이름 반환
         return "basic/item";
+    }
+
+    /**
+     * 상품 수정 폼
+     * @param itemId
+     * @param model
+     * @return
+     */
+    @GetMapping("/{itemId}/edit")
+    public String editForm(@PathVariable("itemId") Long itemId, Model model) {
+        Item item = itemRepository.findById(itemId);
+        model.addAttribute("item", item);
+        return "basic/editForm";
+    }
+
+    /**
+     * 상품 수정
+     * @param itemId
+     * @param item
+     * @return
+     */
+    @PostMapping("/{itemId}/edit")
+    public String edit(@PathVariable("itemId") Long itemId, @ModelAttribute Item item) {
+        itemRepository.update(itemId, item);
+        // 상품 수정 처리 후 클라이언트로 리다이렉트 주소를 반환
+        return "redirect:/basic/items/{itemId}";
     }
 }
