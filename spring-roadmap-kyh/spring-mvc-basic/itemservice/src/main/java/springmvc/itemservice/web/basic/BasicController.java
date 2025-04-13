@@ -122,13 +122,26 @@ public class BasicController {
      * @param item
      * @return
      */
-    @PostMapping("/add")
+//    @PostMapping("/add")
     public String addItemV4(Item item) {
         // 매개변수가 POJO 타입인 경우 @ModelAttribute를 생략할 수 있다.
         // 상품 등록 처리
         itemRepository.save(item);
         // 상품 상세 View의 이름 반환
         return "basic/item";
+    }
+
+    /**
+     * 상품 등록 - PGR 방식 적용
+     * @param item
+     * @return
+     */
+    @PostMapping("/add")
+    public String addItemV5(Item item) {
+        // 상품 등록 처리
+        itemRepository.save(item);
+        // 리다이렉트 주소를 반환 (상품 상세)
+        return "redirect:/basic/items/" + item.getId();
     }
 
     /**
@@ -152,8 +165,9 @@ public class BasicController {
      */
     @PostMapping("/{itemId}/edit")
     public String edit(@PathVariable("itemId") Long itemId, @ModelAttribute Item item) {
+        // 상품 수정 처리
         itemRepository.update(itemId, item);
-        // 상품 수정 처리 후 클라이언트로 리다이렉트 주소를 반환
+        // 리다이렉트 주소를 반환
         return "redirect:/basic/items/{itemId}";
     }
 }
