@@ -22,12 +22,12 @@ public class MemberServiceV2 {
     // 계좌 이체
     public void accountTransfer(String fromId, String toId, int money) throws SQLException {
         // 커넥션 생성
-        Connection con =  dataSource.getConnection();
+        Connection con = dataSource.getConnection();
         try {
             // 트랜잭션 시작
             con.setAutoCommit(false);
             // 비즈니스 로직 실행
-            businessLogic(fromId, toId, money, con);
+            businessLogic(con, fromId, toId, money);
             // 트랜잭션 커밋
             con.commit();
         } catch(Exception e) {
@@ -41,7 +41,7 @@ public class MemberServiceV2 {
     }
 
     // 비즈니스 로직
-    private void businessLogic(String fromId, String toId, int money, Connection con) throws SQLException {
+    private void businessLogic(Connection con, String fromId, String toId, int money) throws SQLException {
         // 회원 조회
         Member fromMember = memberRepository.findById(con, fromId);
         Member toMember = memberRepository.findById(con, toId);
