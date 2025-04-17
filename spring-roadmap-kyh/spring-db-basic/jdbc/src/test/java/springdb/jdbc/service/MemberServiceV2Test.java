@@ -38,7 +38,7 @@ class MemberServiceV2Test {
         // 커넥션 생성 및 설정
         DriverManagerDataSource dataSource = new DriverManagerDataSource(URL, USERNAME, PASSWORD);
         memberRepository = new MemberRepositoryV2(dataSource);
-        memberService = new MemberServiceV2(dataSource,memberRepository);
+        memberService = new MemberServiceV2(dataSource, memberRepository);
     }
 
     // 매 번 테스트 후 실행
