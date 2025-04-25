@@ -5,7 +5,7 @@
         </encoder>
     </appender>
     <!-- 03.04 HikaryCP 커넥션 생성 로그 출력을 위한 설정 -->
-    <root level="DEBUG">
+    <root level="INFO">
         <appender-ref ref="STDOUT" />
     </root>
 </configuration>
