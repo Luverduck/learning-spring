@@ -10,7 +10,8 @@ import springdb.jdbc.repository.MemberRepositoryV1;
 
 import java.sql.SQLException;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static springdb.jdbc.connection.ConnectionConst.*;
 
 /**

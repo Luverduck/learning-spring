@@ -7,17 +7,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import springdb.jdbc.domain.Member;
-import springdb.jdbc.repository.MemberRepositoryV1;
 import springdb.jdbc.repository.MemberRepositoryV2;
 
 import java.sql.SQLException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
-import static springdb.jdbc.connection.ConnectionConst.PASSWORD;
-import static springdb.jdbc.connection.ConnectionConst.URL;
-import static springdb.jdbc.connection.ConnectionConst.USERNAME;
+import static springdb.jdbc.connection.ConnectionConst.*;
 
 @Slf4j
 class MemberServiceV2Test {

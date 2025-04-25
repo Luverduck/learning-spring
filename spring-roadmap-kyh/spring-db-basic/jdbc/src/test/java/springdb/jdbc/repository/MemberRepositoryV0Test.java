@@ -7,7 +7,8 @@ import springdb.jdbc.domain.Member;
 import java.sql.SQLException;
 import java.util.NoSuchElementException;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @Slf4j
 class MemberRepositoryV0Test {
