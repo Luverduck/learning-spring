@@ -18,7 +18,7 @@ public class CheckedExceptionAppTest {
     // 컨트롤러
     static class Controller {
         Service service = new Service();
-        // 컨트롤러의 메소드가 하위 계층의 예외 타입에 의존한다.
+        // 컨트롤러의 메소드가 하위 메소드에서 발생할 수 있는 예외 타입에 의존한다.
         public void request() throws ConnectException, SQLException {
             service.logic();
         }
@@ -28,7 +28,7 @@ public class CheckedExceptionAppTest {
     static class Service {
         NetworkClient networkClient = new NetworkClient();
         Repository repository = new Repository();
-        // 서비스의 메소드가 하위 계층의 예외 타입에 의존한다.
+        // 서비스의 메소드가 하위 메소드에서 발생할 수 있는 예외 타입에 의존한다.
         public void logic() throws ConnectException, SQLException {
             networkClient.call();
             repository.call();
