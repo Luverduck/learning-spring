@@ -10,7 +10,7 @@ import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
 import springdb.jdbc.domain.Member;
 import springdb.jdbc.repository.MemberRepository;
-import springdb.jdbc.repository.MemberRepositoryV4_2;
+import springdb.jdbc.repository.MemberRepositoryV5;
 
 import javax.sql.DataSource;
 
@@ -47,7 +47,9 @@ class MemberServiceV4Test {
             // 07.02. 런타임 예외 적용 - 검사 예외를 체이닝하여 비검사 예외로 던지기
             // return new MemberRepositoryV4_1(dataSource);
             // 07.05. 스프링 예외 추상화 적용 - 예외 변환기 적용
-            return new MemberRepositoryV4_2(dataSource);
+            // return new MemberRepositoryV4_2(dataSource);
+            // 07.06. JDBC 반복 문제 해결 - JdbcTemplate 적용
+            return new MemberRepositoryV5(dataSource);
         }
         @Bean
         MemberServiceV4 memberServiceV4() {
