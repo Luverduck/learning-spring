@@ -74,4 +74,11 @@ public class BasicController {
             this.age = age;
         }
     }
+
+    // 기본 객체
+    @GetMapping("/basic-objects")
+    public String basicObjects(HttpSession session) {
+        session.setAttribute("sessionData", "Hello, Session!");
+        return "basic/basic-objects";
+    }
 }
