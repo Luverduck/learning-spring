@@ -79,7 +79,9 @@ public class BasicController {
     // 기본 객체
     @GetMapping("/basic-objects")
     public String basicObjects(HttpSession session) {
+        // HttpSession에 데이터 추가
         session.setAttribute("sessionData", "Hello, Session!");
+        // 뷰의 이름 반환
         return "basic/basic-objects";
     }
 
@@ -88,6 +90,17 @@ public class BasicController {
     public String data(Model model) {
         // Model에 LocalDateTime 타입 데이터 추가
         model.addAttribute("localDateTime", LocalDateTime.now());
+        // 뷰의 이름 반환
         return "basic/date";
+    }
+
+    // URL 링크
+    @GetMapping("link")
+    public String link(Model model) {
+        // Model에 데이터 추가
+        model.addAttribute("param1", "data1");
+        model.addAttribute("param2", "data2");
+        // 뷰의 이름 반환
+        return "basic/link";
     }
 }
