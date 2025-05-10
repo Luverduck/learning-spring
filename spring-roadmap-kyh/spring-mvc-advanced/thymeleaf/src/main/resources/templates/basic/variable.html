@@ -24,5 +24,9 @@
         <li>${userMap['userA']['username']} = <span th:text="${userMap['userA']['username']}"></span></li>
         <li>${userMap['userA'].getUsername()} = <span th:text="${userMap['userA'].getUsername()}"></span></li>
     </ul>
+    <ul>
+        Spring Bean
+        <li>${@helloBean.hello('Spring!')} = <span th:text="${@helloBean.hello('Spring!')}"></span></li>
+    </ul>
 </body>
 </html>
