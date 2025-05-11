@@ -103,4 +103,13 @@ public class BasicController {
         // 뷰의 이름 반환
         return "basic/link";
     }
+
+    // 리터럴
+    @GetMapping("/literal")
+    public String literal(Model model) {
+        // Model에 데이터 추가
+        model.addAttribute("data", "Spring!");
+        // 뷰의 이름 반환
+        return "basic/literal";
+    }
 }
