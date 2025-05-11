@@ -112,4 +112,14 @@ public class BasicController {
         // 뷰의 이름 반환
         return "basic/literal";
     }
+
+    // 연산
+    @GetMapping("/operation")
+    public String operation(Model model) {
+        // Model에 데이터 추가
+        model.addAttribute("nullData", null);
+        model.addAttribute("data", "Spring!");
+        // 뷰의 이름 반환
+        return "basic/operation";
+    }
 }
