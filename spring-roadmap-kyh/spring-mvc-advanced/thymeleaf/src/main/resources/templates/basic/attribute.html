@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>속성 설정</h1>
+    <!-- 타임리프는 HTML 요소의 속성 값을 th: 뒤에 붙은 속성 값으로 대체한다. -->
+    <input type="text" name="mock" th:name="userA" />
+    <h1>속성 추가</h1>
+    <!-- th:attrappend="속성='속성 값'" : 지정한 속성 값의 앞에 다른 값을 추가한다. -->
+    - th:attrappend = <input type="text" class="text" th:attrappend="class='large'" /><br/>
+    <!-- th:attrprepend="속성='속성 값'" : 지정한 속성 값의 뒤에 다른 값을 추가한다. -->
+    - th:attrprepend = <input type="text" class="text" th:attrprepend="class='large'" /><br/>
+    <!-- th:classappend="속성 값" : 지정한 class 속성 값의 뒤에 다른 값을 추가한다. -->
+    - th:classappend = <input type="text" class="text" th:classappend="large" /><br/>
+    <h1>checked 처리</h1>
+    <!-- HTML 요소의 checked 속성은 속성 값과 상관없이 해당 속성이 존재할 경우 적용된다. -->
+    - checked=true <input type="checkbox" name="active" checked="true" /><br/>
+    - checked=false <input type="checkbox" name="active" checked="false" /><br/>
+    - checked o <input type="checkbox" name="active" th:checked="true" /><br/>
+    - checked x <input type="checkbox" name="active" th:checked="false" /><br/>
+</body>
+</html>

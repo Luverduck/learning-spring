@@ -122,4 +122,10 @@ public class BasicController {
         // 뷰의 이름 반환
         return "basic/operation";
     }
+
+    // 속성 값 설정
+    @GetMapping("/attribute")
+    public String attribute() {
+        return "basic/attribute";
+    }
 }
