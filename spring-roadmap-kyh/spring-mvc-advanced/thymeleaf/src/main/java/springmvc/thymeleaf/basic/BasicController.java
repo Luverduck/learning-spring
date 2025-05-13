@@ -126,6 +126,20 @@ public class BasicController {
     // 속성 값 설정
     @GetMapping("/attribute")
     public String attribute() {
+        // 뷰의 이름 반환
         return "basic/attribute";
+    }
+
+    // 반복
+    @GetMapping("/each")
+    public String each(Model model) {
+        // Model에 데이터 추가
+        List<User> list = new ArrayList<>();
+        list.add(new User("UserA", 10));
+        list.add(new User("UserB", 20));
+        list.add(new User("UserC", 30));
+        model.addAttribute("users", list);
+        // 뷰의 이름 반환
+        return "basic/each";
     }
 }
