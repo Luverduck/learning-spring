@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>if, unless</h1>
+<table border="1">
+    <tr>
+        <th>count</th>
+        <th>username</th>
+        <th>age</th>
+    </tr>
+    <tr th:each="user, userStat : ${users}">
+        <td th:text="${userStat.count}">1</td>
+        <td th:text="${user.username}">username</td>
+        <td>
+            <span th:text="${user.age}">0</span>
+            <!-- th:if는 조건을 만족할 때 HTML 요소를 렌더링 한다. -->
+            <span th:text="'미성년자'" th:if="${user.age lt 20}"></span>
+            <!-- th:unless는 조건을 만족하지 않을 때 HTML 요소를 렌더링 한다. -->
+            <span th:text="'미성년자'" th:unless="${user.age ge 20}"></span>
+        </td>
+    </tr>
+</table>
+<h1>switch</h1>
+<table border="1">
+    <tr>
+        <th>count</th>
+        <th>username</th>
+        <th>age</th>
+    </tr>
+    <tr th:each="user, userStat : ${users}">
+        <td th:text="${userStat.count}">1</td>
+        <td th:text="${user.username}">username</td>
+        <!-- th:switch는 조건을 만족하는 th:case의 HTML 요소를 렌더링 한다. -->
+        <td th:switch="${user.age}">
+            <span th:case="10">10살</span>
+            <span th:case="20">20살</span>
+            <span th:case="*">기타</span>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

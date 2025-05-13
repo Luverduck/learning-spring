@@ -134,12 +134,26 @@ public class BasicController {
     @GetMapping("/each")
     public String each(Model model) {
         // Model에 데이터 추가
+        addUsers(model);
+        // 뷰의 이름 반환
+        return "basic/each";
+    }
+
+    // 조건부 평가
+    @GetMapping("/condition")
+    public String condition(Model model) {
+        // Model에 데이터 추가
+        addUsers(model);
+        // 뷰의 이름 반환
+        return "basic/condition";
+    }
+
+    // Model에 데이터 추가
+    private static void addUsers(Model model) {
         List<User> list = new ArrayList<>();
         list.add(new User("UserA", 10));
         list.add(new User("UserB", 20));
         list.add(new User("UserC", 30));
         model.addAttribute("users", list);
-        // 뷰의 이름 반환
-        return "basic/each";
     }
 }
