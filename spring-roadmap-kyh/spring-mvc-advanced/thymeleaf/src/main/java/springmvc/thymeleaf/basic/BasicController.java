@@ -148,14 +148,6 @@ public class BasicController {
         return "basic/condition";
     }
 
-    private static void addUsers(Model model) {
-        List<User> list = new ArrayList<>();
-        list.add(new User("UserA", 10));
-        list.add(new User("UserB", 20));
-        list.add(new User("UserC", 30));
-        model.addAttribute("users", list);
-    }
-
     // 주석
     @GetMapping("/comments")
     public String comments(Model model) {
@@ -163,5 +155,22 @@ public class BasicController {
         model.addAttribute("data", "Spring!");
         // 뷰의 이름 반환
         return "basic/comments";
+    }
+
+    // 블록
+    @GetMapping("/block")
+    public String block(Model model) {
+        // Model에 데이터 추가
+        addUsers(model);
+        // 뷰의 이름 반환
+        return "basic/block";
+    }
+
+    private static void addUsers(Model model) {
+        List<User> list = new ArrayList<>();
+        list.add(new User("UserA", 10));
+        list.add(new User("UserB", 20));
+        list.add(new User("UserC", 30));
+        model.addAttribute("users", list);
     }
 }
