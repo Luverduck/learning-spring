@@ -166,6 +166,15 @@ public class BasicController {
         return "basic/block";
     }
 
+    @GetMapping("/javascript")
+    public String javascript(Model model) {
+        // Model에 데이터 추가
+        model.addAttribute("user", new User("user\"A\"", 10));
+        addUsers(model);
+        // 뷰의 이름 반환
+        return "basic/javascript";
+    }
+
     private static void addUsers(Model model) {
         List<User> list = new ArrayList<>();
         list.add(new User("UserA", 10));
