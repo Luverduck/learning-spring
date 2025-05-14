@@ -66,16 +66,6 @@ public class BasicController {
         }
     }
 
-    @Data
-    static class User {
-        private String username;
-        private int age;
-        public User(String username, int age) {
-            this.username = username;
-            this.age = age;
-        }
-    }
-
     // 기본 객체
     @GetMapping("/basic-objects")
     public String basicObjects(HttpSession session) {
@@ -166,6 +156,7 @@ public class BasicController {
         return "basic/block";
     }
 
+    // 자바스크립트 인라인
     @GetMapping("/javascript")
     public String javascript(Model model) {
         // Model에 데이터 추가
@@ -173,6 +164,16 @@ public class BasicController {
         addUsers(model);
         // 뷰의 이름 반환
         return "basic/javascript";
+    }
+
+    @Data
+    static class User {
+        private String username;
+        private int age;
+        public User(String username, int age) {
+            this.username = username;
+            this.age = age;
+        }
     }
 
     private static void addUsers(Model model) {
