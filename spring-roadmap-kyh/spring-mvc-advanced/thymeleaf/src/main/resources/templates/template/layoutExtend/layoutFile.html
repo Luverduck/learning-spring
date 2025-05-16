@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<!-- 매개변수를 포함하는 템플릿 조각 -->
+<html th:fragment="layout (title, content)" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- 인수로 전달받은 <title>로 치환 -->
+    <title th:replace="${title}">레이아웃 타이틀</title>
+</head>
+<body>
+    <h1>레이아웃 H1</h1>
+    <!-- 인수로 전달받은 <section>으로 치환 -->
+    <div th:replace="${content}">
+        <p>레이아웃 컨텐츠</p>
+    </div>
+    <footer>
+        레이아웃 푸터
+    </footer>
+</body>
+</html>
