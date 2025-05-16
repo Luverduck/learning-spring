@@ -31,8 +31,12 @@ public class FormItemController {
         return "form/item";
     }
 
+    // 상품 등록 폼
     @GetMapping("/add")
-    public String addForm() {
+    public String addForm(Model model) {
+        // Model에 HTML 폼에 바인딩 할 객체 추가
+        model.addAttribute("item", new Item());
+        // 뷰의 이름 반환
         return "form/addForm";
     }
 
@@ -44,10 +48,13 @@ public class FormItemController {
         return "redirect:/form/items/{itemId}";
     }
 
+    // 상품 수정 폼
     @GetMapping("/{itemId}/edit")
     public String editForm(@PathVariable Long itemId, Model model) {
+        // Model에 HTML 폼에 바인딩 할 객체 추가
         Item item = itemRepository.findById(itemId);
         model.addAttribute("item", item);
+        // 뷰의 이름 반환
         return "form/editForm";
     }
 
@@ -56,6 +63,4 @@ public class FormItemController {
         itemRepository.update(itemId, item);
         return "redirect:/form/items/{itemId}";
     }
-
 }
-
