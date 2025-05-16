@@ -1,0 +1,12 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- <title>과 <link>를 매개변수로 하는 템플릿 조각 -->
+<head th:fragment="common_header(title, links)">
+    <!-- 인수로 전달받은 <title>로 치환 -->
+    <title th:replace="${title}">템플릿 레이아웃 타이틀</title>
+    <!-- 공통 요소 -->
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/awesomeapp.css}">
+    <link rel="shortcut icon" th:href="@{/images/favicon.ico}">
+    <script type="text/javascript" th:src="@{/sh/scripts/codebase.js}"></script>
+    <!-- 인수로 전달받은 <link>로 치환 -->
+    <th:block th:replace="${links}" />
+</head>
