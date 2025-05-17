@@ -3,6 +3,7 @@ package hello.itemservice.web.form;
 import hello.itemservice.domain.item.Item;
 import hello.itemservice.domain.item.ItemRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +11,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
+@Slf4j
 @Controller
 @RequestMapping("/form/items")
 @RequiredArgsConstructor
@@ -40,11 +42,17 @@ public class FormItemController {
         return "form/addForm";
     }
 
+    // 상품 등록
     @PostMapping("/add")
     public String addItem(@ModelAttribute Item item, RedirectAttributes redirectAttributes) {
+        // HTML 폼 데이터의 배송 상태 값 확인
+        log.info("item.open={}", item.getOpen());
+        // 상품 등록
         Item savedItem = itemRepository.save(item);
+        // Model에 상품 정보 추가
         redirectAttributes.addAttribute("itemId", savedItem.getId());
         redirectAttributes.addAttribute("status", true);
+        // 뷰의 이름 반환
         return "redirect:/form/items/{itemId}";
     }
 
