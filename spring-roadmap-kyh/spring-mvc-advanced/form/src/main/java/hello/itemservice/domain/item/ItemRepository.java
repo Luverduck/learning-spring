@@ -27,11 +27,13 @@ public class ItemRepository {
         return new ArrayList<>(store.values());
     }
 
+    // 상품 수정
     public void update(Long itemId, Item updateParam) {
         Item findItem = findById(itemId);
         findItem.setItemName(updateParam.getItemName());
         findItem.setPrice(updateParam.getPrice());
         findItem.setQuantity(updateParam.getQuantity());
+        findItem.setOpen(updateParam.getOpen()); // 배송 상태
     }
 
     public void clearStore() {

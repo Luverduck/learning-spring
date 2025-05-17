@@ -19,6 +19,7 @@ public class FormItemController {
 
     private final ItemRepository itemRepository;
 
+    // 상품 목록
     @GetMapping
     public String items(Model model) {
         List<Item> items = itemRepository.findAll();
@@ -26,6 +27,7 @@ public class FormItemController {
         return "form/items";
     }
 
+    // 상품 상세
     @GetMapping("/{itemId}")
     public String item(@PathVariable long itemId, Model model) {
         Item item = itemRepository.findById(itemId);
@@ -66,9 +68,12 @@ public class FormItemController {
         return "form/editForm";
     }
 
+    // 상품 수정
     @PostMapping("/{itemId}/edit")
     public String edit(@PathVariable Long itemId, @ModelAttribute Item item) {
+        // 상품 수정
         itemRepository.update(itemId, item);
+        // 뷰의 이름 반환
         return "redirect:/form/items/{itemId}";
     }
 }
